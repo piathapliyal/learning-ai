@@ -67,5 +67,18 @@ async def generate_learning_artifacts(text: str):
 
     return LearningArtifacts.model_validate_json(response.text)
 
+from google.genai import types
 
+
+async def generate_embedding(text: str):
+    response = client.models.embed_content(
+        model="gemini-embedding-001",
+        contents=text,
+        config=types.EmbedContentConfig(
+            task_type="RETRIEVAL_DOCUMENT",
+            output_dimensionality=768,
+        ),
+    )
+
+    return response.embeddings[0].values
 
