@@ -129,9 +129,10 @@ async def ask_document(
         )
 
         return {
-            "document_id": document_id,
-            "question": request.question,
-            "answer": answer,
+           "document_id": document_id,
+           "question": request.question,
+           "answer": answer["answer"],
+           "sources": answer["sources"],
         }
 
     finally:

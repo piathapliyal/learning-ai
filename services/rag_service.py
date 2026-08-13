@@ -47,7 +47,10 @@ async def generate_rag_answer(
     )
 
     if not chunks:
-        return "I couldn't find relevant information in the uploaded material."
+        return {
+            "answer": "I couldn't find relevant information in the uploaded material.",
+            "sources": [],
+        }
 
     context = "\n\n".join(
         f"[Source {index + 1}]\n{chunk.content}"
@@ -81,4 +84,13 @@ Give a clear and concise answer.
         contents=prompt,
     )
 
-    return response.text
+    return {
+        "answer": response.text,
+        "sources": [
+            {
+                "chunk_id": chunk.id,
+                "content": chunk.content,
+            }
+            for chunk in chunks
+        ],
+    }
