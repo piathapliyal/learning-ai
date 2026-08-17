@@ -1,0 +1,838 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #f7f7f4;
+  color: #171717;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.navbar {
+  height: 72px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.logo span {
+  color: #6d4aff;
+}
+
+.nav-status {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ============================================================
+   LANDING PAGE
+   ============================================================ */
+
+.main-content {
+  max-width: 1250px;
+  margin: auto;
+  padding: 70px 6%;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #6d4aff;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.03;
+  letter-spacing: -3px;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: #6d4aff;
+}
+
+.hero-description {
+  max-width: 650px;
+  color: #666;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+/* ============================================================
+   UPLOAD
+   ============================================================ */
+
+.upload-card {
+  background: white;
+  border: 1px solid #e4e4df;
+  border-radius: 22px;
+  padding: 30px;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee9ff;
+  color: #6d4aff;
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+
+.upload-card h2 {
+  font-size: 21px;
+  margin-bottom: 7px;
+}
+
+.upload-card p {
+  color: #888;
+  margin-bottom: 22px;
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #171717;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.upload-button:hover {
+  transform: translateY(-1px);
+  background: #333;
+}
+
+.upload-button input {
+  display: none;
+}
+
+.selected-file {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f5f4ff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selected-file strong {
+  font-size: 14px;
+}
+
+.selected-file span {
+  font-size: 12px;
+  color: #6d4aff;
+}
+
+.process-button {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  border: none;
+  background: #6d4aff;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.process-button:hover {
+  background: #5b3de0;
+}
+
+/* ============================================================
+   HERO VISUAL
+   ============================================================ */
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.visual-card {
+  width: 100%;
+  max-width: 390px;
+  min-height: 430px;
+  border-radius: 30px;
+  background: #171717;
+  color: white;
+  padding: 25px;
+  box-shadow: 25px 30px 70px rgba(0, 0, 0, 0.18);
+}
+
+.visual-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.online-dot {
+  color: #7cff8a;
+}
+
+.visual-content {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visual-icon {
+  font-size: 50px;
+  color: #8c6cff;
+  margin-bottom: 20px;
+}
+
+.visual-content h3 {
+  font-size: 30px;
+  line-height: 1.15;
+  margin-bottom: 15px;
+}
+
+.visual-content p {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.feature-pill {
+  display: inline-block;
+  width: fit-content;
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: #292929;
+  color: #c9beff;
+  font-size: 12px;
+}
+
+/* ============================================================
+   FEATURES
+   ============================================================ */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 90px;
+  padding-top: 45px;
+  border-top: 1px solid #deded8;
+}
+
+.feature {
+  padding: 10px;
+}
+
+.feature-number {
+  color: #6d4aff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.feature h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: #777;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.dashboard {
+  min-height: 100vh;
+  background: #f7f7f4;
+}
+
+.dashboard-navbar {
+  height: 72px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.document-name {
+  color: #777;
+  font-size: 14px;
+}
+
+.dashboard-content {
+  max-width: 1150px;
+  margin: auto;
+  padding: 70px 6%;
+}
+
+.dashboard-heading {
+  max-width: 750px;
+  margin-bottom: 50px;
+}
+
+.dashboard-heading h1 {
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  margin-bottom: 20px;
+}
+
+.dashboard-heading h1 span {
+  color: #6d4aff;
+}
+
+.dashboard-heading > p:last-child {
+  color: #777;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   DASHBOARD CARDS
+   ============================================================ */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  border: 1px solid #e4e4df;
+  border-radius: 22px;
+  padding: 30px;
+  min-height: 230px;
+  transition: 0.2s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.card-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 13px;
+  background: #eee9ff;
+  color: #6d4aff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 21px;
+}
+
+.dashboard-card h2 {
+  margin-bottom: 10px;
+  font-size: 23px;
+}
+
+.dashboard-card p {
+  color: #777;
+  line-height: 1.6;
+  font-size: 14px;
+  max-width: 430px;
+  margin-bottom: 22px;
+}
+
+.dashboard-card button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #6d4aff;
+  font-weight: 700;
+}
+
+.tutor-card {
+  background: #171717;
+  color: white;
+}
+
+.tutor-card p {
+  color: #aaa;
+}
+
+.tutor-card .card-icon {
+  background: #292929;
+  color: #a58fff;
+}
+
+/* ============================================================
+   DOCUMENT INFO
+   ============================================================ */
+
+.document-info {
+  margin-top: 30px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: white;
+  border: 1px solid #e4e4df;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #777;
+  font-size: 13px;
+}
+
+.document-info strong {
+  color: #171717;
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.summary-panel {
+  margin-top: 30px;
+  background: white;
+  border: 1px solid #e4e4df;
+  border-radius: 22px;
+  padding: 30px;
+}
+
+.summary-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.summary-panel-header h2 {
+  font-size: 28px;
+}
+
+.summary-panel-header button {
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.summary-content {
+  color: #555;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+
+.flashcard-panel {
+  margin-top: 30px;
+  background: white;
+  border: 1px solid #e4e4df;
+  border-radius: 22px;
+  padding: 30px;
+}
+
+.flashcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.flashcard-header h2 {
+  font-size: 28px;
+}
+
+.flashcard-header button {
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.flashcard-progress {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.flashcard {
+  border-radius: 18px;
+  background: #f7f5ff;
+  border: 1px solid #e5defe;
+  padding: 35px;
+  min-height: 230px;
+}
+
+.flashcard-label {
+  color: #6d4aff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+.flashcard h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  max-width: 850px;
+}
+
+.flashcard-answer {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #ddd5ff;
+}
+
+.flashcard-answer p:last-child {
+  color: #555;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.flashcard-actions {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.primary-action {
+  border: none;
+  background: #6d4aff;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-weight: 700;
+}
+
+.primary-action:hover {
+  background: #5b3de0;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.navigation-buttons button {
+  border: 1px solid #ddd;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 9px;
+}
+
+.navigation-buttons button:hover:not(:disabled) {
+  background: #f5f4ff;
+  border-color: #d8ceff;
+}
+
+.navigation-buttons button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    justify-content: flex-start;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding-top: 45px;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-content {
+    padding-top: 45px;
+  }
+
+  .dashboard-navbar {
+    padding: 0 5%;
+  }
+
+  .document-name {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .flashcard-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navigation-buttons {
+    justify-content: space-between;
+  }
+
+  .flashcard h3 {
+    font-size: 20px;
+  }
+
+  .flashcard {
+    padding: 25px;
+  }
+}
+
+
+/* ============================================================
+   CONCEPT MAP
+   ============================================================ */
+
+.concept-panel {
+  margin-top: 32px;
+  background: #ffffff;
+  border: 1px solid #e4e4df;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+}
+
+.concept-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.concept-panel-header h2 {
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+.concept-panel-header p:not(.eyebrow) {
+  color: #777;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.concept-panel-header button {
+  border: 1px solid #deded8;
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.concept-panel-header button:hover {
+  background: #f7f7f4;
+}
+
+/* ============================================================
+   CONCEPT MAP
+   ============================================================ */
+
+.concept-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 20px;
+}
+
+.concept-node-wrapper {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   CONCEPT CARD
+   ============================================================ */
+
+.concept-node {
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #faf9ff;
+  border: 1px solid #ddd6ff;
+  border-radius: 18px;
+
+  padding: 24px 28px;
+
+  position: relative;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.concept-node:hover {
+  transform: translateY(-3px);
+
+  border-color: #6d4aff;
+
+  box-shadow:
+    0 12px 30px rgba(109, 74, 255, 0.12);
+}
+
+.concept-node-number {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  color: #6d4aff;
+
+  margin-bottom: 10px;
+}
+
+.concept-node h3 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+
+.concept-node p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ============================================================
+   CONNECTOR
+   ============================================================ */
+
+.concept-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 55px;
+}
+
+.connector-line {
+  width: 2px;
+  height: 35px;
+
+  background: #cfc7ff;
+}
+
+.connector-arrow {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #eee9ff;
+  color: #6d4aff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .concept-panel {
+    padding: 22px;
+  }
+
+  .concept-panel-header {
+    flex-direction: column;
+  }
+
+  .concept-panel-header button {
+    align-self: flex-start;
+  }
+
+  .concept-node {
+    padding: 20px;
+  }
+
+  .concept-node h3 {
+    font-size: 18px;
+  }
+
+}
