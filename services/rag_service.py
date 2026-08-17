@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from models import DocumentChunk
+from models import DocumentChunk, ChatMessage
 from services.gemini_service import generate_embedding
 
 from google import genai
@@ -35,10 +35,30 @@ async def retrieve_chunks(
     return result.scalars().all()
 
 
+def get_chat_history(
+    db: Session,
+    session_id: int,
+    limit: int = 10,
+):
+    statement = (
+        select(ChatMessage)
+        .where(ChatMessage.session_id == session_id)
+        .order_by(ChatMessage.created_at.desc())
+        .limit(limit)
+    )
+
+    result = db.execute(statement)
+
+    messages = result.scalars().all()
+
+    return list(reversed(messages))
+
+
 async def generate_rag_answer(
     db: Session,
     question: str,
     document_id: int,
+    session_id: int,
 ):
     chunks = await retrieve_chunks(
         db=db,
@@ -52,6 +72,16 @@ async def generate_rag_answer(
             "sources": [],
         }
 
+    history = get_chat_history(
+        db=db,
+        session_id=session_id,
+    )
+
+    conversation = "\n\n".join(
+        f"{message.role.upper()}: {message.content}"
+        for message in history
+    )
+
     context = "\n\n".join(
         f"[Source {index + 1}]\n{chunk.content}"
         for index, chunk in enumerate(chunks)
@@ -62,8 +92,16 @@ You are a learning assistant.
 
 Answer the user's question using ONLY the provided learning material.
 
+You may use the conversation history to understand references
+and follow-up questions, but the factual answer must come
+from the provided learning material.
+
 If the answer cannot be found in the material, say that the information
 is not available in the provided material.
+
+Conversation history:
+
+{conversation}
 
 Learning material:
 

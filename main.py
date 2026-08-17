@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 
@@ -24,11 +25,25 @@ app = FastAPI()
 
 
 # ============================================================
+# CORS
+# ============================================================
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# ============================================================
 # Request Models
 # ============================================================
 
 class QuestionRequest(BaseModel):
     question: str
+    session_id: int = 1
 
 
 # ============================================================
@@ -126,13 +141,47 @@ async def ask_document(
             db=db,
             question=request.question,
             document_id=document_id,
-        )
+            session_id=request.session_id,
+             )
 
         return {
-           "document_id": document_id,
-           "question": request.question,
-           "answer": answer["answer"],
-           "sources": answer["sources"],
+            "document_id": document_id,
+            "question": request.question,
+            "answer": answer["answer"],
+            "sources": answer["sources"],
+        }
+
+    finally:
+        db.close()
+
+
+# ============================================================
+# Get Document Learning Artifacts
+# ============================================================
+
+@app.get("/documents/{document_id}/artifacts")
+async def get_document_artifacts(document_id: int):
+    db = SessionLocal()
+
+    try:
+        document = (
+            db.query(Document)
+            .filter(Document.id == document_id)
+            .first()
+        )
+
+        if not document:
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found",
+            )
+
+        artifacts = json.loads(document.artifacts_json)
+
+        return {
+            "document_id": document.id,
+            "filename": document.filename,
+            "artifacts": artifacts,
         }
 
     finally:
